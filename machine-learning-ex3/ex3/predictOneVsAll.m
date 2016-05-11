@@ -30,14 +30,10 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-sizeT = size(all_theta')
-sizeX = size(X)
 
 K = X * all_theta'; % K is (5000x10)
 
 [value,p] = max(K,[],2); % obtenemos el valor más alto de cada fila, que es la probabilidad de que sea de esa clase
-
-p
 
 % =========================================================================
 

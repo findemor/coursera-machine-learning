@@ -23,10 +23,21 @@ p = zeros(size(X, 1), 1);
 
 
 
+A1 = [ones(m,1) X]; % añadimos bias
 
+Z2 = A1 * Theta1';
+A2 = sigmoid(Z2);
 
+A2 = [ones(m,1) A2]; % añadimos bias
 
+Z3 = A2 * Theta2';
+A3 = sigmoid(Z3);
 
+size(A3)
+
+% calculamos probabilidad
+
+[value, p] = max(A3,[],2);
 
 
 % =========================================================================
