@@ -37,11 +37,20 @@ grad = zeros(size(theta));
 %
 
 
+z = X*theta;
+h = 1 ./ (1 + e.^(-z));
 
+% funcion de costes
+J = (1/m) * sum( -y .* log(h) - (1-y) .* log(1 - h));
 
+% gradiente
+grad = (1/m) * X' * (h - y);
 
+temp = theta; 
+temp(1) = 0; % el bias no se penaliza
 
-
+penalizacion = (lambda / m) / theta(2:end); % penalizacion
+grad = grad + penalizacion;
 
 
 
