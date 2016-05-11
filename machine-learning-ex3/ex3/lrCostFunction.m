@@ -44,15 +44,20 @@ grad = zeros(size(theta));
 z = X*theta;
 h = 1 ./ (1 + e.^(-z));
 
-% funcion de costes
+% funcion de costes NO REGULARIZADA
 J = (1/m) * sum( -y .* log(h) - (1-y) .* log(1 - h));
 
-% gradiente
+% gradiente NO REGULARIZADO
 grad = (1/m) * X' * (h - y);
 
+%      regulizacion
+%           costes
+penalize = sum(theta(2:end) .^ 2);
+J = J + lambda/(2*m) * penalize;
+
+%           gradiente
 temp = theta; 
 temp(1) = 0; % el bias no se penaliza
-
 penalizacion = (lambda / m) * temp; % penalizacion
 grad = grad + penalizacion;
 
