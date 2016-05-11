@@ -37,6 +37,10 @@ grad = zeros(size(theta));
 %
 
 
+
+
+
+
 z = X*theta;
 h = 1 ./ (1 + e.^(-z));
 
@@ -49,13 +53,13 @@ grad = (1/m) * X' * (h - y);
 temp = theta; 
 temp(1) = 0; % el bias no se penaliza
 
-penalizacion = (lambda / m) / theta(2:end); % penalizacion
+penalizacion = (lambda / m) * temp; % penalizacion
 grad = grad + penalizacion;
-
 
 
 % =============================================================
 
 grad = grad(:);
+
 
 end
